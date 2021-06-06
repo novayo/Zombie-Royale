@@ -22,7 +22,7 @@ function Start() {
     // const originUser = InitUser();
 
     const sendDataToServer = (data) => {
-        console.log('送資料給server')
+        // console.log('送資料給server')
         // console.log("Client Send:");
         console.log(data);
 
@@ -40,11 +40,9 @@ function Start() {
     }
 
     const getDataFromServer = () => {
-        console.log('從Server取得所有使用者資料')
+        // console.log('從Server取得所有使用者資料')
         socket.on("updateGameData", (data) => {
-            console.log("Client Get:");
-            console.log(data)
-            user.set({opr: "set", user: data});
+            user.set({ opr: "set", user: data });
         });
     }
 
@@ -81,7 +79,7 @@ function Start() {
             }
             if (collision.event) {
                 originUser.myUser.r = [originUser.myUser.r[0] + move[0], originUser.myUser.r[1] + move[1]];
-                sendDataToServer({ r: originUser.myUser.r, kind: "move", name: GetData("name"), room: GetData("room") });
+                sendDataToServer({ r: originUser.myUser.r, kind: "z", name: GetData("name"), room: GetData("room") });
             }
 
         }
