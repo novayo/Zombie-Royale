@@ -8,6 +8,13 @@ let socket = io(URL);
 //     user.data = data;
 // })
 
+
+// 非同步封包寫法
+// export async function func() {
+//     let a = await HotData(...)
+//         .
+// }
+
 export function HotData(setData, getData, data) {
 
     return new Promise(function (resolve, reject) {
@@ -18,7 +25,6 @@ export function HotData(setData, getData, data) {
             resolve(data);
         });
     }).then((result) => {
-        console.log('asdadasdad, ', result)
         user.data = result;
         return user.data
     });
