@@ -16,9 +16,9 @@ module.exports = socket_settings = (io) => {
             }
 
             gv_.addUser(_id, username, room, tick);
-            socket.emit('getRoom', { 'room': room });
             socket.join(room);
             SetRoomBroadcast(io, room);
+            socket.emit('getRoom', { 'room': room });
         })
 
 
@@ -32,9 +32,6 @@ module.exports = socket_settings = (io) => {
 
             // 設定使用者資訊
             gv_.setUserInfo(_id, name, room, kind, r)
-            // 用socket id 取出使用者資料
-            // need_data = gv_.getAllUserInfoList()
-            // socket.emit('getUser', need_data)
         })
 
     });

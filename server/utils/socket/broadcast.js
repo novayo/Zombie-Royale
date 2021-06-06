@@ -2,8 +2,10 @@ const gv_ = require('../globalVariable');
 
 //設定定期廣播room
 SetRoomBroadcast = (io, room) => {
-    if (!(room in gv_.getAllroom())) {
+    if (gv_.roomIsBroadCast(room)) {
         return;
+    } else {
+        gv_.setRoomBroadcastData(room, null);
     }
 
     tick = gv_.getRoomTick(room);

@@ -13,7 +13,6 @@ import { URL } from '../Data/Restore'
 
 let socket = GetData("socket");
 const TEST = true
-var test = 0
 
 function Start() {
     // console.log(GetData("name"));

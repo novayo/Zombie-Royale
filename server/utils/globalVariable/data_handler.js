@@ -3,6 +3,7 @@ module.exports = class Handler {
     constructor() {
         this.user_data = {} // {'_id': {'name', 'room', }}
         this.room_data = {} // {'room' : {'_id':[_id], 'tick'}}
+        this.broadcast_data = {} // {'room': null}
     }
 
     // 函數名稱修正
@@ -36,6 +37,13 @@ module.exports = class Handler {
         this.user_data[_id]['r'] = r
     }
 
+    setRoomBroadcastData(room, data) {
+        if (!(room in this.broadcast_data)) {
+            this.broadcast_data[room] = null
+        }
+        this.broadcast_data[room] = data
+    }
+
     getAllRoom() {
         return this.room_data;
     }
@@ -58,6 +66,10 @@ module.exports = class Handler {
         }
 
         return data
+    }
+
+    getAllBroadCastRoomData() {
+        return this.broadcast_data;
     }
 
     getAllUsersName() {

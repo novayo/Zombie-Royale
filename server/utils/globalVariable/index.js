@@ -14,6 +14,10 @@ class globalVariable {
         this.handler.setUserInfo(_id, name, room, kind, r);
     }
 
+    setRoomBroadcastData(room, data) {
+        this.handler.setRoomBroadcastData(room, data);
+    }
+
     getAllUserName() {
         return this.handler.getAllUsersName();
     }
@@ -28,6 +32,11 @@ class globalVariable {
 
     getAllroom() {
         return this.handler.getAllRoom();
+    }
+
+    roomIsBroadCast(room) {
+        let broadCastData = this.handler.getAllBroadCastRoomData();
+        return room in broadCastData;
     }
 
     getRoomTick(room) {
