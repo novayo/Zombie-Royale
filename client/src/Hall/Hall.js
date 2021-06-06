@@ -3,8 +3,12 @@ import { InitData } from '../Data/InitData';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 
+
+
+
 function Hall({ location }) {
     const { name, passward } = queryString.parse(location.search);
+
 
     const StartButton = () => {
         InitData(name, passward);
@@ -12,9 +16,9 @@ function Hall({ location }) {
 
     return (
         <div>
-            <h1>### Hello {name} ###</h1> 
-            <Link onClick = {StartButton} to = {`/Start?name=${name}`}>
-                    <button type = "submit">Start Gaming</button>
+            <h1>### Hello {name} ###</h1>
+            <Link onClick={StartButton} to={`/Start?name=${name}`}>
+                <button type="submit">Start Gaming</button>
             </Link>
         </div>
     )

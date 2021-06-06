@@ -6,18 +6,24 @@ class globalVariable {
     constructor() {
         this.users = new Users()
     }
-    
-    addUser(socket_id, name, room, tick) {
-        this.users.addUser(socket_id, name, room, tick)
+
+    addUser(_id, name, room, tick) {
+        this.users.addUser(_id, name, room, tick)
+    }
+    setUserInfo(_id, name, room, kind, r) {
+        this.users.setUserInfo(_id, name, room, kind, r)
     }
 
     getAllUserName() {
         return this.users.getAllUsersName()
     }
-    getAllroom(){
+    getAllUserInfoList() {
+        return this.users.getAllUserInfoList()
+    }
+    getAllroom() {
         return this.users.getAllRoom();
     }
-    getRoomTick(room){
+    getRoomTick(room) {
         return this.users.getRoomTick(room);
     }
 }

@@ -6,8 +6,10 @@ export var update = {
 }
 
 export var user = {
+    '_id': null,
     Room: null,
     name: null,
+    data: null,
     windowSize: { height: window.innerHeight, width: window.innerWidth }
 }
 

@@ -4,16 +4,27 @@ import { URL, user, map, update } from './Restore'
 let TEST = true;
 let socket = io(URL);
 
+const guid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 export function InitData(name, passward) {
+    const _id = guid();
+
     let data = {
         'username': name,
         'password': passward,
         'room': `${Math.floor(Math.random() * 100)}`,
-        'tick': 64
+        'tick': 64,
+        '_id': _id
     }
 
     if (TEST) {
         data['room'] = '25'
+        user.Room = '25'
     }
 
     socket.emit("SetRoom", data)
@@ -25,6 +36,7 @@ export function InitData(name, passward) {
         // map.data = data.map.data // 需討論
         socket.disconnect();
     })
+    user._id = _id;
     user.name = name;
     update.state = true;
 

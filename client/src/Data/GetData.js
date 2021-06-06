@@ -12,6 +12,10 @@ export function GetData(kind) {
             return user.windowSize;
         case "map":
             return map
+        case "data":
+            return user.data
+        case "_id":
+            return user._id
         default:
             return null;
     }
