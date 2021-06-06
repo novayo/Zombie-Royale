@@ -8,10 +8,10 @@ import { Keyboard, Move } from './KeyBoard/KeyBoard'
 import Factory from './Object/Factory/Factory'
 import Collision from './Object/Collision/Collision'
 import { Shoot } from './Object/Action/Shoot'
-// import io from 'socket.io-client';
-// import { URL } from '../Data/Restore'
+import io from 'socket.io-client';
+import { URL } from '../Data/Restore'
 
-// let socket = io(URL);
+let socket = io(URL);
 
 function Start() {
     // console.log(GetData("name"));
@@ -26,7 +26,7 @@ function Start() {
         // console.log("Client Send:");
         console.log(data);
 
-        user.set({ opr: "set", user: data });
+        // user.set({ opr: "set", user: data });
         // if (data.kind === "Bullet") {
         //     setBulletPos([data]);
         // } else if (data.kind === "x") {
@@ -36,16 +36,16 @@ function Start() {
         // } else {
         //     user.set({ opr: "add", user: data });
         // }
-        // socket.emit("sendFromClient", data);
+        socket.emit("setUser", data);
     }
 
     const getDataFromServer = () => {
         console.log('從Server取得所有使用者資料')
-        // socket.on("sendToClient", (data) => {
-        //     console.log("Client Get:");
-        //     console.log(data)
-        //     user.set({opr: "set", user: data});
-        // });
+        socket.on("updateGameData", (data) => {
+            console.log("Client Get:");
+            console.log(data)
+            user.set({opr: "set", user: data});
+        });
     }
 
     // 遊戲開始流程

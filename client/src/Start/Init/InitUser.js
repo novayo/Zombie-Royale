@@ -18,12 +18,12 @@ export async function InitUser(getDataFromServer, sendDataToServer) {
         'name': GetData("name"),
         'room': GetData("room")
     }
-    let val = await HotData("setUser", "getUser", user)
-    console.log('設定使用者資料', GetData('data'))
-    console.log('取得所有使用者資料', val)
-    originUser = { allUser: val, myUser: user }
+    // let val = await HotData("setUser", "getUser", user)
+    // console.log('設定使用者資料', GetData('data'))
+    // console.log('取得所有使用者資料', val)
+    originUser = { allUser: [user], myUser: user }
     getDataFromServer();
-    sendDataToServer(originUser.allUser);
+    sendDataToServer(originUser.myUser);
 
     // const user = {
     //     r: [Math.floor(Math.random() * size), Math.floor(Math.random() * size)],
