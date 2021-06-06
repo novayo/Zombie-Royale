@@ -12,6 +12,7 @@ import io from 'socket.io-client';
 import { URL } from '../Data/Restore'
 
 let socket = GetData("socket");
+const TEST = true
 
 function Start() {
     // console.log(GetData("name"));
@@ -22,6 +23,7 @@ function Start() {
     // const originUser = InitUser();
 
     const sendDataToServer = (data) => {
+        data._id = GetData('_id')
         // console.log('送資料給server')
         // console.log("Client Send:");
         console.log(data);
@@ -77,6 +79,7 @@ function Start() {
             if (collision.move !== undefined) {
                 move = collision.move;
             }
+            console.log('move', move)
             if (collision.event) {
                 originUser.myUser.r = [originUser.myUser.r[0] + move[0], originUser.myUser.r[1] + move[1]];
                 sendDataToServer({ r: originUser.myUser.r, kind: "z", name: GetData("name"), room: GetData("room") });
@@ -102,22 +105,22 @@ function Start() {
     }
 
     const handleMouseDown = (event) => {
-        const shoot = Shoot(originUser.myUser.r, mousePos, 12, 2);
-        var totalTime = shoot.totalTime;
-        var start = shoot.start;
+        if (!TEST) {
+            const shoot = Shoot(originUser.myUser.r, mousePos, 12, 2);
+            var totalTime = shoot.totalTime;
+            var start = shoot.start;
 
-        const bulletFly = setInterval(() => {
-            if (totalTime === 0) {
-                clearInterval(bulletFly);
-            }
+            const bulletFly = setInterval(() => {
+                if (totalTime === 0) {
+                    clearInterval(bulletFly);
+                }
 
-            start = [start[0] + shoot.speedVector[0], start[1] + shoot.speedVector[1]];
-            sendDataToServer({ r: start, kind: "Bullet", name: GetData("name"), room: GetData("room") });
-            totalTime -= shoot.timeStep;
+                start = [start[0] + shoot.speedVector[0], start[1] + shoot.speedVector[1]];
+                sendDataToServer({ r: start, kind: "Bullet", name: GetData("name"), room: GetData("room") });
+                totalTime -= shoot.timeStep;
 
-        }, shoot.timeStep);
-
-
+            }, shoot.timeStep);
+        }
     }
 
     useEffect(() => {

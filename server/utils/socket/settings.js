@@ -23,8 +23,6 @@ module.exports = socket_settings = (io) => {
 
 
         socket.on('setUser', (data) => {
-            console.log('[封包get]')
-
             // data = 使用者資料
             let _id = data['_id']
             let r = data['r']
