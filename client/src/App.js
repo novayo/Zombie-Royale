@@ -1,37 +1,31 @@
 import './App.css';
-import { useReducer } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { usernameContext, initialUsername, usernameReducer } from './core';
-import { passwordContext, initialPassword, passwordReducer } from './core';
-import { roomContext, initialRoom, roomReducer } from './core';
+import { useReducer } from 'react'
 
-import Welcome from './components/Welcome'
-import Join from './components/Join'
-import Room from './components/Room'
-import Play from './components/Play'
-import Win from './components/Win'
-import Lose from './components/Lose'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import Login from './Login/Login'
+import Hall from './Hall/Hall'
+import Start from './Start/Start'
+
+import { userContext, userInitial, userReducer } from './Data/Index';
+import { wallContext, wallInitial, wallReducer } from './Data/Index';
 
 function App() {
-  const [curUsername, setCurUsername] = useReducer(usernameReducer, initialUsername);
-  const [curPassword, setCurPassword] = useReducer(passwordReducer, initialPassword);
-  const [curRoom, setCurRoom] = useReducer(roomReducer, initialRoom);
+  const [user, setUser] = useReducer(userReducer, userInitial);
+  const [wall, setWall] = useReducer(wallReducer, wallInitial);
 
   return (
-    <usernameContext.Provider value={{ get: curUsername, set: setCurUsername }}>
-      <passwordContext.Provider value={{ get: curPassword, set: setCurPassword }}>
-        <roomContext.Provider value={{ get: curRoom, set: setCurRoom }}>
+    <div className="App">
+      <userContext.Provider value={{ get: user, set: setUser }}>
+        <wallContext.Provider value={{ get: wall, set: setWall }}>
           <Router>
-            <Route path='/' exact component={Welcome} />
-            <Route path='/join' component={Join} />
-            <Route path='/room' component={Room} />
-            <Route path='/play' component={Play} />
-            <Route path='/win' component={Win} />
-            <Route path='/lose' component={Lose} />
+            <Route path = "/" exact component = {Login} />
+            <Route path = "/Hall" exact component = {Hall}/>
+            <Route path = "/Start" component = {Start}/>
           </Router>
-        </roomContext.Provider>
-      </passwordContext.Provider>
-    </usernameContext.Provider>
+        </wallContext.Provider>
+      </userContext.Provider>
+    </div>
   );
 }
 
