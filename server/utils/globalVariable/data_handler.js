@@ -41,11 +41,22 @@ module.exports = class Handler {
     }
 
     getRoomBroadcastData(room) {
-        data = {}
+        let data = []
 
         if (room in this.room_data) {
-            data = {} // 討論要傳送什麼資料出去
+            let player_id_list = this.room_data[room]['_id']
+
+            for (let player_id of player_id_list) {
+                let tmp_user_data = this.user_data[player_id]
+                data.push({
+                    'r': tmp_user_data['r'],
+                    'room': tmp_user_data['room'],
+                    'kind': tmp_user_data['kind'],
+                    'name': tmp_user_data['name'], // 之後要區分是誰射出的子彈
+                })
+            }
         }
+
         return data
     }
 

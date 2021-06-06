@@ -34,8 +34,8 @@ module.exports = socket_settings = (io) => {
             gv_.setUserInfo(_id, name, room, kind, r)
 
             // 用socket id 取出使用者資料
-            need_data = gv_.getAllUserInfoList()
-            socket.emit('getUser', need_data)
+            // need_data = gv_.getAllUserInfoList()
+            // socket.emit('getUser', need_data)
         })
 
     });

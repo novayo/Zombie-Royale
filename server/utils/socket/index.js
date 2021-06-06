@@ -2,7 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 const router = require('./router');
-const socket_settings = require('./socket_settings')
+const socket_settings = require('./settings')
 
 const app = express();
 const server = http.createServer(app);
