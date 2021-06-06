@@ -13,6 +13,7 @@ import { URL } from '../Data/Restore'
 
 let socket = GetData("socket");
 const TEST = true
+var test = 0
 
 function Start() {
     // console.log(GetData("name"));
@@ -26,7 +27,7 @@ function Start() {
         data._id = GetData('_id')
         // console.log('送資料給server')
         // console.log("Client Send:");
-        console.log(data);
+        // console.log('位置：', data.r);
 
         // user.set({ opr: "set", user: data });
         // if (data.kind === "Bullet") {
@@ -79,7 +80,6 @@ function Start() {
             if (collision.move !== undefined) {
                 move = collision.move;
             }
-            console.log('move', move)
             if (collision.event) {
                 originUser.myUser.r = [originUser.myUser.r[0] + move[0], originUser.myUser.r[1] + move[1]];
                 sendDataToServer({ r: originUser.myUser.r, kind: "z", name: GetData("name"), room: GetData("room") });
