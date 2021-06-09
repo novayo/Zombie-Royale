@@ -8,14 +8,14 @@ const Login = () => {
     return (
         <div>
             <div>
-                <h1>Login</h1>
-                <div><input placeholder = "name" type = "text" onChange = {(event) => setName(event.target.value)}/></div>
-                <div><input placeholder = "passward" type = "text" onChange = {(event) => setPassward(event.target.value)}/></div>
-                <Link onClick = {event => (!name && !passward) ? event.preventDefault() : null} to = {`/Hall?name=${name}&passward=${passward}`}>
-                    <button type = "submit">Zoom In Hall</button>
+                <h1>Login Test</h1>
+                <div><input placeholder="name" type="text" onChange={(event) => setName(event.target.value)} /></div>
+                <div><input placeholder="passward" type="text" onChange={(event) => setPassward(event.target.value)} /></div>
+                <Link onClick={event => (!name && !passward) ? event.preventDefault() : null} to={`/Hall?name=${name}&passward=${passward}`}>
+                    <button type="submit">Zoom In Hall</button>
                 </Link>
             </div>
-        </div>        
+        </div>
     )
 }
 
