@@ -28,7 +28,7 @@ function Collision(velVector, myCircle, circle, rect, rad, width, height, range)
     const circleRectEvent = circleRect(myCircle, focus.rect, rad, width, height);
     if(circleRectEvent.event){
         console.log("circleRect Collision")
-        return circleRectHandle(velVector, myCircle, focus.rect[circleRectEvent.index], width, height)
+        return circleRectHandle(velVector, myCircle, focus.rect[circleRectEvent.index], rad, width, height)
     }
 
     console.log("No Collision")

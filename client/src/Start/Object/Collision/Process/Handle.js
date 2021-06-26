@@ -50,6 +50,7 @@ function projection(a, b) {
 
 export function circleIntervalHandle(velVector, myCircle, otherCircle) {
     // velVector = myCircle.vel // 如果這樣寫遇到[0, 0]危險 !!!
+    
     const vector = [otherCircle.r[0] - myCircle.r[0], otherCircle.r[1] - myCircle.r[1]]
     const vertical = projection(velVector, vector).vertical
     return VelRebound(vertical, myCircle, otherCircle)
@@ -57,33 +58,22 @@ export function circleIntervalHandle(velVector, myCircle, otherCircle) {
 }
 
 
-export function circleRectHandle(velVector, myCircle, rect, width, height) {
+export function circleRectHandle(velVector, myCircle, rect, rad, width, height) {
     // velVector = myCircle.vel
-    const delta = 0;
-    if (rect.r[0] <= myCircle.r[0] && myCircle.r[0] <= rect.r[0] + width) {
-        if (myCircle.r[1] <= rect.r[1] + height / 2) {
-            return [velVector[0], -Math.abs(velVector[1]) - delta] // 上邊牆壁
-        } else {
-            return [velVector[0],  Math.abs(velVector[1]) + delta] // 下邊牆壁
-        }
-    } else if (rect.r[1] <= myCircle.r[1] && myCircle.r[1] <= rect.r[1] + height) {
-        if (myCircle.r[0] <= rect.r[0] + width / 2) {
-            return [-Math.abs(velVector[0]) - delta, velVector[1]] // 左邊牆壁
-        } else {
-            return [ Math.abs(velVector[0]) + delta, velVector[1]] // 右邊牆壁
-        }
-    } else {
-        return velVector // 碰到邊邊 未完成
-        // const delta = 0.1 
-        // if (Math.abs(velVector[0] > velVector[1])) {
-        //     return [velVector[0], -velVector[1]]; 
-        // } else if (Math.abs(velVector[0] < velVector[1])) {
-        //     return [-velVector[0], velVector[1]]
-        // } else {
-        //     return [-velVector[0], -velVector[1]]
-        // }
-        
+
+    if (rect.r[0] <= myCircle.r[0] + rad && myCircle.r[0] + rad <= rect.r[0] + width){
+        velVector[0] = -Math.abs(velVector[0]) // 左邊
+    } else if (rect.r[0] <= myCircle.r[0] - rad && myCircle.r[0] - rad <= rect.r[0] + width) {
+        velVector[0] =  Math.abs(velVector[0]) // 右邊
     }
+
+    if (rect.r[1] <= myCircle.r[1] + rad && myCircle.r[1] + rad <= rect.r[1] + height){
+        velVector[1] = -Math.abs(velVector[1]) // 上邊
+    } else if (rect.r[1] <= myCircle.r[1] - rad && myCircle.r[1] - rad <= rect.r[1] + height) {
+        velVector[1] =  Math.abs(velVector[1]) // 下邊
+    }
+
+    return velVector
 
 }
 

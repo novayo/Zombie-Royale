@@ -16,16 +16,11 @@ export const circleInterval = (myCircle, circle, rad) => {
 
 export const circleRect = (myCircle, rect, rad, width, height) => {
     for(var i = 0; i < rect.length; i++){
-        if((myCircle.r[0] + rad >= rect[i].r[0] && 
+        if(myCircle.r[0] + rad >= rect[i].r[0] && 
             myCircle.r[0] - rad <= rect[i].r[0] + width && 
             myCircle.r[1] + rad >= rect[i].r[1] && 
             myCircle.r[1] - rad <= rect[i].r[1] + height)
-            ||
-            distance(myCircle.r, [rect[i].r[0] +     0, rect[i].r[1] +      0]) <= rad ||
-            distance(myCircle.r, [rect[i].r[0] + width, rect[i].r[1] +      0]) <= rad ||
-            distance(myCircle.r, [rect[i].r[0] +     0, rect[i].r[1] + height]) <= rad ||
-            distance(myCircle.r, [rect[i].r[0] + width, rect[i].r[1] + height]) <= rad 
-            ){
+            {
             return {event: true, index: i}
         }
     }
