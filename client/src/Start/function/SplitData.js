@@ -1,13 +1,16 @@
 
 function SplitData(allObject) {
+    var user = allObject.user
+
     var allWall = [];
     var allUser = [];
-    for(let i = 0; i < allObject.length; i++){
-        if(allObject[i].kind === "z"){
-            allUser.push(allObject[i])
+    
+    for(let i = 0; i < user.length; i++){
+        if(user[i].kind === "z"){
+            allUser.push(user[i])
 
-        }else if(allObject[i].kind === "x"){
-            allWall.push(allObject[i])
+        }else if(user[i].kind === "x"){
+            allWall.push(user[i])
         }
     }
     return {user: allUser, wall: allWall};

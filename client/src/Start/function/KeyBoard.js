@@ -53,10 +53,10 @@ export const MoveEngine = () => {
                 move[1] + MoveEvent(action, user.myUser.vel)[1]
             ]
         }
-    
+
         move = Collision(
-            user.myUser.r,                        // myCirclePos
             move,                                 // velVector
+            user.myUser,                          // myCircle
             user.allUser,                         // circle
             wall,                                 // rect
             12,                                   // circle rad
@@ -124,16 +124,16 @@ export const KeyUp = (key) => {
         return
     }
 
-    SendData(
-        "setUser", 
-        { 
-            r: [Math.floor(Math.random() * 500), Math.floor(Math.random() * 500)], 
-            vel: [0, 0], 
-            kind: key, 
-            name: GetData("name"), 
-            room: GetData("room") 
-        }
-    );
+    // SendData(
+    //     "setUser", 
+    //     { 
+    //         r: [Math.floor(Math.random() * 500), Math.floor(Math.random() * 500)], 
+    //         vel: [0, 0], 
+    //         kind: key, 
+    //         name: GetData("name") , 
+    //         room: GetData("room") 
+    //     }
+    // );
 
 }
 

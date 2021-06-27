@@ -1,18 +1,26 @@
 
+const distance = (pos1, pos2) => {
+    return ((pos1[0] - pos2[0]) ** 2 + (pos1[1] - pos2[1]) ** 2) ** 0.5
+}
 
-export const circleInterval = (myCirclePos, circle, rad) => {
+
+export const circleInterval = (myCircle, circle, rad) => {
     for(var i = 0; i < circle.length; i++){
-        var distance = (myCirclePos[0] - circle[i].r[0]) ** 2 + (myCirclePos[1] - circle[i].r[1]) ** 2;
-        if(distance !== 0 && distance <= (2 * rad) ** 2){
+        var d = distance(myCircle.r, circle[i].r);
+        if(d !== 0 && d <= (2 * rad)){
             return {event: true, index: i}
         }
     }
     return {event: false}
 }
 
-export const circleRect = (myCirclePos, rect, rad, width, height) => {
+export const circleRect = (myCircle, rect, rad, width, height) => {
     for(var i = 0; i < rect.length; i++){
-        if(myCirclePos[0] + rad >= rect[i].r[0] && myCirclePos[0] - rad <= rect[i].r[0] + width && myCirclePos[1] + rad >= rect[i].r[1] && myCirclePos[1] - rad <= rect[i].r[1] + height){
+        if(myCircle.r[0] + rad >= rect[i].r[0] && 
+            myCircle.r[0] - rad <= rect[i].r[0] + width && 
+            myCircle.r[1] + rad >= rect[i].r[1] && 
+            myCircle.r[1] - rad <= rect[i].r[1] + height)
+            {
             return {event: true, index: i}
         }
     }

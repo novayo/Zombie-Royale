@@ -12,22 +12,26 @@ const VelFunction = (vel) => {
     }
 }
 
-function Collision(myCirclePos, velVector, circle, rect, rad, width, height, range) {
+function Collision(velVector, myCircle, circle, rect, rad, width, height, range) {
 
     // range內的物件判斷碰撞
     const focus = Focus(circle, rect, range);
 
     // circle和circle部碰撞
-    const circleIntervalEvent = circleInterval(myCirclePos, focus.circle, rad);
+    const circleIntervalEvent = circleInterval(myCircle, focus.circle, rad);
     if(circleIntervalEvent.event){
-        return circleIntervalHandle(velVector, myCirclePos, focus.circle[circleIntervalEvent.index].r);
+        console.log("circleInterval Collision")
+        return circleIntervalHandle(velVector, myCircle, focus.circle[circleIntervalEvent.index]);
     }
 
     // circle和rect部碰撞
-    const circleRectEvent = circleRect(myCirclePos, focus.rect, rad, width, height);
+    const circleRectEvent = circleRect(myCircle, focus.rect, rad, width, height);
     if(circleRectEvent.event){
-        return circleRectHandle(velVector, myCirclePos, focus.rect[circleRectEvent.index].r, width, height)
+        console.log("circleRect Collision")
+        return circleRectHandle(velVector, myCircle, focus.rect[circleRectEvent.index], rad, width, height)
     }
+
+    console.log("No Collision")
 
     // 若皆無碰撞事件
     return [VelFunction(velVector[0]), VelFunction(velVector[1])]
